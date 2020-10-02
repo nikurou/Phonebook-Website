@@ -6,7 +6,6 @@ import PhoneBookForm from './components/PhoneBookForm'
 import Notification from './components/Notification'
 import './App.css'
 
-import Axios from 'axios'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
