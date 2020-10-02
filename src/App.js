@@ -44,8 +44,7 @@ const App = () => {
         replaceNumber(newPersonObject)
       }
     } else{
-      setPersons(persons.concat(newPersonObject))
-      phonebookService.create(newPersonObject)
+      phonebookService.create(newPersonObject).then(object => setPersons(persons.concat(object)))
       notify(`Added ${newPersonObject.name}`, 'add')
     }
     setNewName('')
@@ -84,7 +83,7 @@ const App = () => {
 
   const handleDeleteUser = (personObject) => {
     if(window.confirm(`Delete ${personObject.name}?`)){
-
+      console.log(`ID = ${personObject.id}`)
       phonebookService.remove(personObject.id).then(response => {
           setPersons( persons.filter(e => e !== personObject))
           notify(`Deleted ${personObject.name}`, 'success')
