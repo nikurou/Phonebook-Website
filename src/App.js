@@ -40,7 +40,7 @@ const App = () => {
 
     //check if person is already in phonebook before adding
 
-    if( persons.filter(p => p.name.toLowerCase().trim() === newPersonObject.name.toLowerCase().trim()).length == 1){ 
+    if( persons.filter(p => p.name.toLowerCase().trim() === newPersonObject.name.toLowerCase().trim()).length === 1){ 
       if(window.confirm(`${newPersonObject.name} is already added to the phonebook, replace the old number with a new one?`)){
         replaceNumber(newPersonObject)
       }
