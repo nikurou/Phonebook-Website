@@ -85,15 +85,21 @@ const App = () => {
 
   const handleDeleteUser = (personObject) => {
     if(window.confirm(`Delete ${personObject.name}?`)){
-      setPersons( persons.filter(e => e !== personObject))
 
-      Axios.get('http://localhost:3001/persons/'+ personObject.id)
-           .then(response => {console.log('success')})
-           .catch(error => {
+      personService.remove(personObject.id).then(response => {
+          setPersons( persons.filter(e => e !== personObject))
+          notify(`Deleted ${personObject.name}`, success)
+      }).catch(error=> {
              notify(`Information of ${personObject.name} has already been removed from server`, 'error')
-           })
+      })
       
-      Axios.delete('http://localhost:3001/persons/'+ personObject.id)
+      // Axios.get('http://localhost:3001/persons/'+ personObject.id)
+      //      .then(response => {console.log('success')})
+      //      .catch(error => {
+      //        notify(`Information of ${personObject.name} has already been removed from server`, 'error')
+      //      })
+      
+      // Axios.delete('http://localhost:3001/persons/'+ personObject.id)
     }
   }
 
