@@ -85,9 +85,9 @@ const App = () => {
   const handleDeleteUser = (personObject) => {
     if(window.confirm(`Delete ${personObject.name}?`)){
 
-      personService.remove(personObject.id).then(response => {
+      phonebookService.remove(personObject.id).then(response => {
           setPersons( persons.filter(e => e !== personObject))
-          notify(`Deleted ${personObject.name}`, success)
+          notify(`Deleted ${personObject.name}`, 'success')
       }).catch(error=> {
              notify(`Information of ${personObject.name} has already been removed from server`, 'error')
       })
