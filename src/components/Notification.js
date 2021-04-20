@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useSnackbar } from "notistack";
+import { Button } from "@material-ui/core";
 
-const Notification = ({message, notificationType}) =>{
+const Notification = ({ message, notificationType }) => {
+  const { enqueueSnackbar } = useSnackbar();
 
-    if(message === ''){
-      return <div></div>
-    }
-  
-    console.log(`notification type: ${notificationType}`)
-   
-    return(
-      <div className = {notificationType}>
-        {message}
-      </div>
-    )
-  }
+  //A map of all the notification types to their respective variant colors for snackbar
+  const notifDict = {
+    add: "success",
+    replaced: "success",
+    success: "error",
+    error: "error",
+  };
 
-  export default Notification
+  useEffect(() => {
+    if (message !== "")
+      enqueueSnackbar(message, { variant: notifDict[notificationType] });
+  }, [message, notificationType]);
+
+  return <div />;
+};
+
+export default Notification;
