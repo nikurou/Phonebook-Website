@@ -15,7 +15,14 @@ const Notification = ({ message, notificationType }) => {
 
   useEffect(() => {
     if (message !== "")
-      enqueueSnackbar(message, { variant: notifDict[notificationType] });
+      enqueueSnackbar(message, {
+        variant: notifDict[notificationType],
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "center",
+        },
+        preventDuplicate: true,
+      });
   }, [message, notificationType]);
 
   return <div />;
