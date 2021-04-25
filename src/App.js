@@ -124,13 +124,20 @@ const App = () => {
 
   return (
     <SnackbarProvider maxSnack={3}>
-      <div>
-        <h2>Phonebook</h2>
+      <div className="main">
+        <h2 style={{ display: "flex", alignSelf: "center" }}>Phonebook</h2>
         <Notification
           message={notification}
           notificationType={notificationType}
         />
-        <FilterSearch filter={filter} handleFilterChange={handleFilterChange} />
+        <div className="horizontalHeader">
+          <div className="searchBar">
+            <FilterSearch
+              filter={filter}
+              handleFilterChange={handleFilterChange}
+            />
+          </div>
+        </div>
         <h2>add a new</h2>
         <PhoneBookForm
           name={newName}
