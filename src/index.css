@@ -4,5 +4,7 @@ body,
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: dimgray;
+  background-color: rgb(33, 33, 33);
+  color: white;
+  width: 100%;
 }
