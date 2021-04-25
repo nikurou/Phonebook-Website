@@ -1,21 +1,35 @@
 .add {
-    color: green;
-    background: lightgrey;
-    font-size: 20px;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: green;
-    padding: 10px;
-    margin-bottom: 10px;
+  color: green;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: green;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.error{
-    color: red;
-    background: lightgrey;
-    font-size: 20px;
-    border-style: solid;
-    border-radius: 5px;
-    border-color: red;
-    padding: 10px;
-    margin-bottom: 10px;
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: red;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.main {
+  display: flex;
+  width: 80%;
+  align-items: flex-start;
+  flex-direction: column;
+  /*background-color: dimgray;*/
+  margin: auto;
+}
+
+.searchBar {
+  display: flex;
+  align-self: flex-end;
 }
