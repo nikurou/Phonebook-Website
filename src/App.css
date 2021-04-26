@@ -22,14 +22,31 @@
 
 .main {
   display: flex;
-  width: 80%;
+  width: 90%;
   align-items: flex-start;
   flex-direction: column;
   /*background-color: dimgray;*/
   margin: auto;
 }
 
-.searchBar {
+.searchBarGrowLeft {
+  width: 15%;
+  direction: rtl;
+}
+.searchBarGrowLeft > * {
+  /* So that it'll grow ltr*/
+  direction: ltr;
+}
+
+.header {
   display: flex;
-  align-self: flex-end;
+  align-self: center;
+}
+
+.horizontalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
 }
