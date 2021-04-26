@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "dimgray",
     borderWidth: "0",
     border: "None",
-    width: "90%",
+    width: "85%",
     transition: "width .8s",
-    "&:focus": { width: "95%", outline: "None" },
+    "&:focus": { width: "85%", outline: "None" },
     "&::placeholder": { color: "white" },
   },
 }));
