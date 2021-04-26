@@ -4,8 +4,10 @@ import Numbers from "./components/Numbers";
 import FilterSearch from "./components/FilterSearch";
 import PhoneBookForm from "./components/PhoneBookForm";
 import Notification from "./components/Notification";
-import { SnackbarProvider, useSnackbar } from "notistack";
+import { SnackbarProvider } from "notistack";
+
 import "./App.css";
+import AddButton from "./components/AddButton";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -14,6 +16,7 @@ const App = () => {
   const [filter, setFilter] = useState("");
   const [notification, setNotification] = useState("");
   const [notificationType, setNotifactionType] = useState("");
+  const [openForm, setOpen] = useState(false);
 
   //Populate Persons with data from db.json
   useEffect(() => {
@@ -32,11 +35,10 @@ const App = () => {
   };
 
   const addPerson = (event) => {
+    setOpen(false); //Close the dialog box!
     event.preventDefault(); //Prevent reload of page
     const newPersonObject = { name: newName, number: newNumber };
-
     //check if person is already in phonebook before adding
-
     if (
       persons.filter(
         (p) =>
@@ -122,35 +124,46 @@ const App = () => {
     }
   };
 
+  //Close or Open the dialog box
+  const handleClickAdd = () => {
+    setOpen(!openForm);
+  };
+
   return (
     <SnackbarProvider maxSnack={3}>
       <div className="main">
-        <h2 style={{ display: "flex", alignSelf: "center" }}>Phonebook</h2>
-        <Notification
-          message={notification}
-          notificationType={notificationType}
-        />
+        <h2 className="header">Phonebook</h2>
+
         <div className="horizontalHeader">
-          <div className="searchBar">
+          <div className="addButton">
+            <AddButton handleClickAdd={handleClickAdd}></AddButton>
+          </div>
+          <div className="searchBarGrowLeft">
             <FilterSearch
               filter={filter}
               handleFilterChange={handleFilterChange}
             />
           </div>
         </div>
-        <h2>add a new</h2>
+
         <PhoneBookForm
           name={newName}
           number={newNumber}
           handleNameChange={handleNameChange}
           addPerson={addPerson}
           handleNumberChange={handleNumberChange}
+          handleClickAdd={handleClickAdd}
+          open={openForm}
         />
         <h2>Numbers</h2>
         <Numbers
           persons={persons}
           filter={filter}
           handleDeleteUser={handleDeleteUser}
+        />
+        <Notification
+          message={notification}
+          notificationType={notificationType}
         />
       </div>
     </SnackbarProvider>
