@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSnackbar } from "notistack";
-import { Button } from "@material-ui/core";
 
 const Notification = ({ message, notificationType }) => {
   const { enqueueSnackbar } = useSnackbar();
