@@ -26,17 +26,29 @@ const useStyles = makeStyles((theme) => ({
   buttons: {},
   information: {
     display: "flex",
+    width: "20%",
     flexDirection: "row",
     marginTop: "auto",
     marginBottom: "auto",
-    maxWidth: "25%",
   },
   numberContainer: {
     marginTop: "auto",
     marginBottom: "auto",
     maxWidth: "25%",
   },
+  nameText: {
+    fontWeight: "bold",
+    marginTop: "auto",
+    marginBottom: "auto",
+  },
+  accountCircle: {
+    paddingRight: "2%",
+    height: "50px",
+    width: "50px",
+  },
 }));
+
+// [ Icon Name            number               [Edit] [Delete]]
 
 const Numbers = ({ persons, filter, handleDeleteUser, handleEditUser }) => {
   const filteredArray = persons.filter((element) =>
@@ -54,10 +66,10 @@ const Numbers = ({ persons, filter, handleDeleteUser, handleEditUser }) => {
           className={classes.paperContainer}
         >
           <div className={classes.information}>
-            <AccountCircleIcon />
-            <div>{person.name}</div>
+            <AccountCircleIcon className={classes.accountCircle} />
+            <h3 className={classes.nameText}>{person.name}</h3>
           </div>
-          <div className={classes.numberContainer}>{person.number}</div>
+          <h3 className={classes.numberContainer}>{person.number}</h3>
           <div className={classes.buttons}>
             <IconButton onClick={() => handleEditUser(person)}>
               <EditIcon />
