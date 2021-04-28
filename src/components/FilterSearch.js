@@ -6,13 +6,11 @@ import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   searchOnFocus: {
-    width: "100%",
-
+    width: "220%",
     transition: "width .8s",
   },
   searchOnBlur: {
-    width: "70%",
-
+    width: "170%",
     transition: "width .8s",
   },
   searchBar: {
