@@ -4,7 +4,8 @@ body,
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: rgb(33, 33, 33);
-  color: white;
+  /*background-color: rgb(33, 33, 33);*/
+  background-color: whitesmoke;
+  color: rgb(33, 33, 33);
   width: 100%;
 }
