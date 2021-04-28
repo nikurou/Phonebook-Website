@@ -7,6 +7,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
+import AddForm from "./AddForm";
+import EditForm from "./EditForm";
 
 const useStyles = makeStyles({
   root: {
@@ -52,74 +54,33 @@ const PhoneBookForm = ({
   handleNumberChange,
   open,
   handleClickAdd,
+  handleEditUser,
+  formType, //"ADD" or "EDIT"
 }) => {
-  const classes = useStyles();
-
+  if (formType === "ADD") {
+    return (
+      <AddForm
+        name={name}
+        number={number}
+        handleNameChange={handleNameChange}
+        addPerson={addPerson}
+        handleNumberChange={handleNumberChange}
+        open={open}
+        handleClickAdd={handleClickAdd}
+      ></AddForm>
+    );
+  }
   return (
-    // <form onSubmit={addPerson}>
-    //   <div>
-    //     name: <input value={name} onChange={handleNameChange} /> <br />
-    //     number: <input value={number} onChange={handleNumberChange} />
-    //   </div>
-    //   <div>
-    //     <button type="submit">add</button>
-    //   </div>
-    // </form>
-
-    <Dialog
+    <EditForm
+      name={name}
+      number={number}
+      handleNameChange={handleNameChange}
+      addPerson={addPerson}
+      handleNumberChange={handleNumberChange}
       open={open}
-      onClose={handleClickAdd}
-      aria-labelledby="form-dialog-title"
-      PaperProps={{
-        style: { backgroundColor: "rgb(66,66,66)", color: "rgb(144,202,249)" },
-      }}
-    >
-      <DialogTitle id="form-dialog-title">Add a Contact</DialogTitle>
-      <DialogContent>
-        <DialogContentText classes={{ root: classes.root }}>
-          To add a contact, please enter the contact's name and number. You may
-          also update contact information by re-entering the contact's name.
-        </DialogContentText>
-        <div className={classes.horizontalTextField}>
-          <TextField
-            classes={{ root: classes.rootInput }}
-            InputProps={{ className: classes.inputTextColor }}
-            autoFocus
-            margin="dense"
-            id="filled-basic"
-            label="Name"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <TextField
-            classes={{ root: classes.rootInput }}
-            InputProps={{ className: classes.inputTextColor }}
-            autoFocus
-            margin="dense"
-            id="filled-basic"
-            label="Number"
-            value={number}
-            onChange={handleNumberChange}
-          />
-        </div>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          classes={{ root: classes.rootButton }}
-          onClick={handleClickAdd}
-          color="primary"
-        >
-          Cancel
-        </Button>
-        <Button
-          classes={{ root: classes.rootButton }}
-          onClick={addPerson}
-          color="primary"
-        >
-          Add
-        </Button>
-      </DialogActions>
-    </Dialog>
+      handleClickAdd={handleClickAdd}
+      handleEditUser={handleEditUser}
+    ></EditForm>
   );
 };
 
