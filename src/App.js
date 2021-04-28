@@ -12,11 +12,14 @@ import AddButton from "./components/AddButton";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
+  const [oldName, setOldName] = useState("");
+  const [oldNumber, setOldNumber] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
   const [notification, setNotification] = useState("");
   const [notificationType, setNotifactionType] = useState("");
   const [openForm, setOpen] = useState(false);
+  const [formType, setType] = useState("");
 
   //Populate Persons with data from db.json
   useEffect(() => {
@@ -44,14 +47,15 @@ const App = () => {
         (p) =>
           p.name.toLowerCase().trim() ===
           newPersonObject.name.toLowerCase().trim()
-      ).length === 1
+      ).length === 1 ||
+      formType === "EDIT"
     ) {
       if (
         window.confirm(
-          `${newPersonObject.name} is already added to the phonebook, replace the old number with a new one?`
+          `You are about to alter ${newPersonObject.name}'s details. Confirm?`
         )
       ) {
-        replaceNumber(newPersonObject);
+        replaceDetails(newPersonObject);
       }
     } else {
       phonebookService
@@ -61,14 +65,22 @@ const App = () => {
     }
     setNewName("");
     setNewNumber("");
+    setOldName("");
+    setOldNumber("");
   };
 
-  const replaceNumber = (person) => {
+  const replaceDetails = (person) => {
     //The person object doesn't have an ID set, we must get the old one.
-    const originalPersonObject = persons.find(
+    var originalPersonObject = persons.find(
       (element) =>
         element.name.toLowerCase().trim() === person.name.toLowerCase().trim()
     );
+    if (formType === "EDIT") {
+      originalPersonObject = persons.find(
+        (element) =>
+          element.name.toLowerCase().trim() === oldName.toLowerCase().trim()
+      );
+    }
     console.log("OGPERSONOBJ:", originalPersonObject);
     const id = originalPersonObject.id;
     const updatedPersonObject = {
@@ -124,8 +136,24 @@ const App = () => {
     }
   };
 
+  const handleEditUser = (personObject) => {
+    setType("EDIT");
+    if (openForm) {
+      setOpen(false);
+      setNewName("");
+      setNewNumber("");
+    } else {
+      setOpen(true);
+      setNewName(personObject.name);
+      setNewNumber(personObject.number);
+      setOldName(personObject.name);
+      setOldNumber(personObject.number);
+    }
+  };
+
   //Close or Open the dialog box
   const handleClickAdd = () => {
+    setType("ADD");
     setOpen(!openForm);
   };
 
@@ -153,13 +181,16 @@ const App = () => {
           addPerson={addPerson}
           handleNumberChange={handleNumberChange}
           handleClickAdd={handleClickAdd}
+          handleEditUser={handleEditUser}
           open={openForm}
+          formType={formType}
         />
-        <h2>Numbers</h2>
+        <h2>Contacts</h2>
         <Numbers
           persons={persons}
           filter={filter}
           handleDeleteUser={handleDeleteUser}
+          handleEditUser={handleEditUser}
         />
         <Notification
           message={notification}
