@@ -186,12 +186,16 @@ const App = () => {
           formType={formType}
         />
         <h2>Contacts</h2>
-        <Numbers
-          persons={persons}
-          filter={filter}
-          handleDeleteUser={handleDeleteUser}
-          handleEditUser={handleEditUser}
-        />
+        <div
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        >
+          <Numbers
+            persons={persons}
+            filter={filter}
+            handleDeleteUser={handleDeleteUser}
+            handleEditUser={handleEditUser}
+          />
+        </div>
         <Notification
           message={notification}
           notificationType={notificationType}
