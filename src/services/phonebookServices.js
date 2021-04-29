@@ -1,6 +1,6 @@
 import axios from "axios";
-//const baseUrl = "/api/persons"; //Relative URL since backend/frontend on same address
-const baseUrl = "http://localhost:3001/persons"; //temporary location while I work on UI
+const baseUrl = "/api/persons"; //Relative URL since backend/frontend on same address
+//const baseUrl = "http://localhost:3001/persons"; //temporary location while I work on UI
 
 const getAll = () => {
   const request = axios.get(baseUrl);
