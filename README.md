@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A simple phonebook React app that interacts with a JSON server. User may add, delete, or update numbers/names in the server by using the UI on the site. 
+A simple phonebook React app that interacts with a JSON server. User may add, delete, or update numbers/names in the server by using the UI on the site. Although this project is part of a course, the UI design is of my own design made with Material UI.
 
 Based on exercises 2.6 - 2.20 from "https://fullstackopen.com/en/"
 
